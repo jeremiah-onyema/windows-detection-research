@@ -1,0 +1,46 @@
+title: PowerShell Writing Suspicious Value to Registry Run Key
+id: c3d4e5f6-a7b8-9012-cdef-123456789012
+status: experimental
+description: >
+    Detects PowerShell writing a suspicious command to a Run key -
+    the SystemBC socks5_powershell pattern, where PowerShell uses
+    Set-ItemProperty to drop a hidden command that runs at logon.
+    Wazuh sees the write in rule 92300 but holds it at level 0 and
+    never alerts. Its only default escalations are .lnk/.vbs/.vba
+    values (92301), writes by reg.exe (92302), and values pointing
+    to a remote access tool (92303) - a PowerShell command written
+    by powershell.exe hits none of them.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1547/001/
+    - https://thedfirreport.com/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.t1547.001
+    - attack.t1059.001
+logsource:
+    category: registry_set
+    product: windows
+detection:
+    selection_keys:
+        TargetObject|contains:
+            - '\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\'
+    selection_suspicious_values:
+        Details|contains:
+            - 'powershell'
+            - 'hidden'
+            - 'bypass'
+            - 'encoded'
+            - 'downloadstring'
+            - 'iex'
+            - 'invoke'
+            - 'wscript'
+            - 'mshta'
+            - 'rundll32'
+    condition: selection_keys and selection_suspicious_values
+falsepositives:
+    - Unlikely - legitimate software rarely writes
+      PowerShell commands to Run keys
+level: critical

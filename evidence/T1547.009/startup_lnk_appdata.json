@@ -1,0 +1,76 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "image": "C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+        "processGuid": "{f5cafcf2-6a42-6a52-4401-000000002300}",
+        "processId": "2888",
+        "utcTime": "2026-07-11 16:07:32.633",
+        "targetFilename": "C:\\\\Users\\\\username\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup\\\\evil_appdata.lnk",
+        "ruleName": "technique_id=T1187,technique_name=Forced Authentication",
+        "creationUtcTime": "2026-07-11 16:07:32.633",
+        "user": "hostname\\\\username"
+      },
+      "system": {
+        "eventID": "11",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"File created:\r\nRuleName: technique_id=T1187,technique_name=Forced Authentication\r\nUtcTime: 2026-07-11 16:07:32.633\r\nProcessGuid: {f5cafcf2-6a42-6a52-4401-000000002300}\r\nProcessId: 2888\r\nImage: C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nTargetFilename: C:\\Users\\username\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\evil_appdata.lnk\r\nCreationUtcTime: 2026-07-11 16:07:32.633\r\nUser: hostname\\username\"",
+        "version": "2",
+        "systemTime": "2026-07-11T16:07:32.6353738Z",
+        "eventRecordID": "2822042",
+        "threadID": "4648",
+        "computer": "hostname",
+        "task": "11",
+        "processID": "3788",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": true,
+    "level": 15,
+    "description": "High Risk: Suspicious process created startup shortcut: C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe wrote C:\\\\Users\\\\username\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup\\\\evil_appdata.lnk",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Shortcut Modification"
+      ],
+      "id": [
+        "T1547.009"
+      ],
+      "tactic": [
+        "Persistence",
+        "Privilege Escalation"
+      ]
+    },
+    "id": "100016"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-11T16:07:32.809Z",
+  "location": "EventChannel",
+  "id": "1783786052.497050",
+  "timestamp": "2026-07-11T16:07:32.809+0000"
+}

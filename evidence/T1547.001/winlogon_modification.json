@@ -1,0 +1,78 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "image": "C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+        "targetObject": "HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon\\\\Shell",
+        "processGuid": "{f5cafcf2-9196-6a4e-3101-000000002100}",
+        "processId": "7136",
+        "utcTime": "2026-07-08 18:06:21.291",
+        "ruleName": "technique_id=T1547.004,technique_name=Winlogon Helper DLL",
+        "details": "explorer.exe",
+        "eventType": "SetValue",
+        "user": "hostname\\\\username"
+      },
+      "system": {
+        "eventID": "13",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"Registry value set:\r\nRuleName: technique_id=T1547.004,technique_name=Winlogon Helper DLL\r\nEventType: SetValue\r\nUtcTime: 2026-07-08 18:06:21.291\r\nProcessGuid: {f5cafcf2-9196-6a4e-3101-000000002100}\r\nProcessId: 7136\r\nImage: C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nTargetObject: HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell\r\nDetails: explorer.exe\r\nUser: hostname\\username\"",
+        "version": "2",
+        "systemTime": "2026-07-08T18:06:21.2930951Z",
+        "eventRecordID": "2801245",
+        "threadID": "4456",
+        "computer": "hostname",
+        "task": "13",
+        "processID": "3596",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 2,
+    "mail": true,
+    "level": 15,
+    "description": "CRITICAL: Winlogon persistence key modified by C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe: HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon\\\\Shell",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Registry Run Keys / Startup Folder"
+      ],
+      "id": [
+        "T1547.001"
+      ],
+      "tactic": [
+        "Persistence",
+        "Privilege Escalation"
+      ]
+    },
+    "id": "100014"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"13\",\"version\":\"2\",\"level\":\"4\",\"task\":\"13\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-07-08T18:06:21.2930951Z\",\"eventRecordID\":\"2801245\",\"processID\":\"3596\",\"threadID\":\"4456\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Registry value set:\\r\\nRuleName: technique_id=T1547.004,technique_name=Winlogon Helper DLL\\r\\nEventType: SetValue\\r\\nUtcTime: 2026-07-08 18:06:21.291\\r\\nProcessGuid: {f5cafcf2-9196-6a4e-3101-000000002100}\\r\\nProcessId: 7136\\r\\nImage: C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\r\\nTargetObject: HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon\\\\Shell\\r\\nDetails: explorer.exe\\r\\nUser: hostname\\\\username\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1547.004,technique_name=Winlogon Helper DLL\",\"eventType\":\"SetValue\",\"utcTime\":\"2026-07-08 18:06:21.291\",\"processGuid\":\"{f5cafcf2-9196-6a4e-3101-000000002100}\",\"processId\":\"7136\",\"image\":\"C:\\\\\\\\WINDOWS\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\",\"targetObject\":\"HKLM\\\\\\\\SOFTWARE\\\\\\\\Microsoft\\\\\\\\Windows NT\\\\\\\\CurrentVersion\\\\\\\\Winlogon\\\\\\\\Shell\",\"details\":\"explorer.exe\",\"user\":\"hostname\\\\\\\\username\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:06:22.311Z",
+  "location": "EventChannel",
+  "id": "1783533982.3039309",
+  "timestamp": "2026-07-08T18:06:22.311+0000"
+}

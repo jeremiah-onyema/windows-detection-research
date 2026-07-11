@@ -1,0 +1,51 @@
+title: Services.exe Writing Executable to Registry Run Key via secedit LOLBIN
+id: f7a8b9c0-d1e2-3456-fabc-012345678901
+status: experimental
+description: >
+    Detects services.exe writing an executable value to a Run key.
+    This is what shows up when secedit.exe sets Run key persistence
+    through a security template: secedit itself never appears as
+    the writer, the write is credited to services.exe running as
+    NT AUTHORITY\SYSTEM. Rules that look for reg.exe or
+    powershell.exe as the writer miss it. Found through Atomic Red
+    Team T1547.001 Test 16. It is tool-agnostic, any LOLBIN that
+    hands its registry write off to services.exe will match.
+references:
+    - https://attack.mitre.org/techniques/T1547/001/
+    - https://attack.mitre.org/techniques/T1218/
+    - https://github.com/jeremiah-onyema/windows-detection-research
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.defense_evasion
+    - attack.t1547.001
+    - attack.t1218
+logsource:
+    category: registry_set
+    product: windows
+detection:
+    selection_keys:
+        TargetObject|contains:
+            - '\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\'
+            - '\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\'
+            - '\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\'
+    selection_values:
+        Details|endswith:
+            - '.exe'
+            - '.bat'
+            - '.cmd'
+            - '.ps1'
+            - '.vbs'
+            - '.js'
+            - '.hta'
+            - '.dll'
+    selection_process:
+        Image|endswith:
+            - '\services.exe'
+    condition: selection_keys and selection_values and selection_process
+falsepositives:
+    - Unlikely - services.exe writing executables
+      to Run key has no known legitimate use case
+level: critical

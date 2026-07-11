@@ -1,0 +1,53 @@
+title: Unexpected Process Writing Executable to Registry Run Key
+id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+status: experimental
+description: >
+    Detects a process other than reg.exe writing an executable
+    (.exe, .bat, .cmd, .ps1, .dll) to a Run key. Wazuh sees every
+    Run key write in rule 92300, but that rule is level 0 and never
+    alerts on its own. By default it only raises an alert when the
+    value is a .lnk, .vbs or .vba (92301), when reg.exe made the
+    write (92302), or when the value points to a remote access tool
+    (92303). An executable written by any other process falls
+    through, including secedit, which writes through services.exe.
+references:
+    - https://attack.mitre.org/techniques/T1547/001/
+    - https://github.com/jeremiah-onyema/windows-detection-research
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1547.001
+logsource:
+    category: registry_set
+    product: windows
+detection:
+    selection_keys:
+        TargetObject|contains:
+            - '\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\'
+            - '\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\'
+            - '\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\'
+    selection_values:
+        Details|endswith:
+            - '.exe'
+            - '.bat'
+            - '.cmd'
+            - '.ps1'
+            - '.vbs'
+            - '.js'
+            - '.hta'
+            - '.dll'
+    filter_legitimate_installers:
+        Image|endswith:
+            - '\reg.exe'
+            - '\msiexec.exe'
+            - '\MsiExec.exe'
+            - '\setup.exe'
+            - '\install.exe'
+    condition: selection_keys and selection_values and not filter_legitimate_installers
+falsepositives:
+    - Legitimate software installations using non-standard
+      installers that write directly to Run key
+    - Software deployment tools like SCCM or Intune
+level: high

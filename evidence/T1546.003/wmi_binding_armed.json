@@ -1,0 +1,76 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "filter": " \\\"__EventFilter.Name=\\\\\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\\\\\"\\\"",
+        "utcTime": "2026-07-08 18:32:34.623",
+        "ruleName": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+        "eventType": "WmiBindingEvent",
+        "operation": "Created",
+        "user": "hostname\\\\username",
+        "consumer": " \\\"ActiveScriptEventConsumer.Name=\\\\\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\\\\\"\\\""
+      },
+      "system": {
+        "eventID": "21",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"WmiEventConsumerToFilter activity detected:\r\nRuleName: technique_id=T1047,technique_name=Windows Management Instrumentation\r\nEventType: WmiBindingEvent\r\nUtcTime: 2026-07-08 18:32:34.623\r\nOperation: Created\r\nUser: hostname\\username\r\nConsumer:  \"ActiveScriptEventConsumer.Name=\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\"\"\r\nFilter:  \"__EventFilter.Name=\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\"\"\"",
+        "version": "3",
+        "systemTime": "2026-07-08T18:32:34.6249550Z",
+        "eventRecordID": "2803172",
+        "threadID": "2504",
+        "computer": "hostname",
+        "task": "21",
+        "processID": "3596",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": true,
+    "level": 15,
+    "description": "CRITICAL: WMI filter-to-consumer binding created (persistence armed):  \\\"ActiveScriptEventConsumer.Name=\\\\\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\\\\\"\\\"",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Windows Management Instrumentation Event Subscription"
+      ],
+      "id": [
+        "T1546.003"
+      ],
+      "tactic": [
+        "Privilege Escalation",
+        "Persistence"
+      ]
+    },
+    "id": "100020"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"21\",\"version\":\"3\",\"level\":\"4\",\"task\":\"21\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-07-08T18:32:34.6249550Z\",\"eventRecordID\":\"2803172\",\"processID\":\"3596\",\"threadID\":\"2504\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"WmiEventConsumerToFilter activity detected:\\r\\nRuleName: technique_id=T1047,technique_name=Windows Management Instrumentation\\r\\nEventType: WmiBindingEvent\\r\\nUtcTime: 2026-07-08 18:32:34.623\\r\\nOperation: Created\\r\\nUser: hostname\\\\username\\r\\nConsumer:  \\\"ActiveScriptEventConsumer.Name=\\\\\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\\\\\"\\\"\\r\\nFilter:  \\\"__EventFilter.Name=\\\\\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\\\\\"\\\"\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1047,technique_name=Windows Management Instrumentation\",\"eventType\":\"WmiBindingEvent\",\"utcTime\":\"2026-07-08 18:32:34.623\",\"operation\":\"Created\",\"user\":\"hostname\\\\\\\\username\",\"consumer\":\" \\\\\\\"ActiveScriptEventConsumer.Name=\\\\\\\\\\\\\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\\\\\\\\\\\\\"\\\\\\\"\",\"filter\":\" \\\\\\\"__EventFilter.Name=\\\\\\\\\\\\\\\"AtomicRedTeam-WMIPersistence-ActiveScriptEventConsumer-Example\\\\\\\\\\\\\\\"\\\\\\\"\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:32:35.469Z",
+  "location": "EventChannel",
+  "id": "1783535555.3940558",
+  "timestamp": "2026-07-08T18:32:35.469+0000"
+}

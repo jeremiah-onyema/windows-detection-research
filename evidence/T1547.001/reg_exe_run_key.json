@@ -1,0 +1,78 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "image": "C:\\\\WINDOWS\\\\system32\\\\reg.exe",
+        "targetObject": "HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnceEx\\\\0001\\\\Depend\\\\1",
+        "processGuid": "{f5cafcf2-919c-6a4e-3e01-000000002100}",
+        "processId": "4504",
+        "utcTime": "2026-07-08 18:06:20.202",
+        "ruleName": "technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder",
+        "details": "C:\\\\Path\\\\AtomicRedTeam.dll",
+        "eventType": "SetValue",
+        "user": "hostname\\\\username"
+      },
+      "system": {
+        "eventID": "13",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"Registry value set:\r\nRuleName: technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder\r\nEventType: SetValue\r\nUtcTime: 2026-07-08 18:06:20.202\r\nProcessGuid: {f5cafcf2-919c-6a4e-3e01-000000002100}\r\nProcessId: 4504\r\nImage: C:\\WINDOWS\\system32\\reg.exe\r\nTargetObject: HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\0001\\Depend\\1\r\nDetails: C:\\Path\\AtomicRedTeam.dll\r\nUser: hostname\\username\"",
+        "version": "2",
+        "systemTime": "2026-07-08T18:06:20.2040308Z",
+        "eventRecordID": "2801241",
+        "threadID": "4456",
+        "computer": "hostname",
+        "task": "13",
+        "processID": "3596",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 2,
+    "mail": true,
+    "level": 12,
+    "description": "Registry Run key persistence: HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnceEx\\\\0001\\\\Depend\\\\1 written by C:\\\\WINDOWS\\\\system32\\\\reg.exe",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Registry Run Keys / Startup Folder"
+      ],
+      "id": [
+        "T1547.001"
+      ],
+      "tactic": [
+        "Persistence",
+        "Privilege Escalation"
+      ]
+    },
+    "id": "100011"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"13\",\"version\":\"2\",\"level\":\"4\",\"task\":\"13\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-07-08T18:06:20.2040308Z\",\"eventRecordID\":\"2801241\",\"processID\":\"3596\",\"threadID\":\"4456\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Registry value set:\\r\\nRuleName: technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder\\r\\nEventType: SetValue\\r\\nUtcTime: 2026-07-08 18:06:20.202\\r\\nProcessGuid: {f5cafcf2-919c-6a4e-3e01-000000002100}\\r\\nProcessId: 4504\\r\\nImage: C:\\\\WINDOWS\\\\system32\\\\reg.exe\\r\\nTargetObject: HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnceEx\\\\0001\\\\Depend\\\\1\\r\\nDetails: C:\\\\Path\\\\AtomicRedTeam.dll\\r\\nUser: hostname\\\\username\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder\",\"eventType\":\"SetValue\",\"utcTime\":\"2026-07-08 18:06:20.202\",\"processGuid\":\"{f5cafcf2-919c-6a4e-3e01-000000002100}\",\"processId\":\"4504\",\"image\":\"C:\\\\\\\\WINDOWS\\\\\\\\system32\\\\\\\\reg.exe\",\"targetObject\":\"HKLM\\\\\\\\SOFTWARE\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\CurrentVersion\\\\\\\\RunOnceEx\\\\\\\\0001\\\\\\\\Depend\\\\\\\\1\",\"details\":\"C:\\\\\\\\Path\\\\\\\\AtomicRedTeam.dll\",\"user\":\"hostname\\\\\\\\username\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:06:21.214Z",
+  "location": "EventChannel",
+  "id": "1783533981.3032808",
+  "timestamp": "2026-07-08T18:06:21.214+0000"
+}

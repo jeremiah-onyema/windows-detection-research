@@ -1,0 +1,36 @@
+title: Scheduled Task With Highest Available Privilege on Boot or Logon
+id: c3d4e5f6-a7b8-9012-cdef-333333333333
+status: experimental
+description: >
+    Detects scheduled tasks that run with HighestAvailable
+    privilege on a boot or logon trigger. That pairing hands an
+    attacker elevated access back on every reboot or logon, which
+    makes it a strong persistence and privilege-escalation signal.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+    definition: 'Requirements: Windows Event ID 4698'
+detection:
+    selection:
+        EventID: 4698
+    selection_trigger:
+        TaskContent|contains:
+            - 'BootTrigger'
+            - 'LogonTrigger'
+    selection_privilege:
+        TaskContent|contains:
+            - 'HighestAvailable'
+    condition: selection and selection_trigger and selection_privilege
+falsepositives:
+    - Legitimate administrative tasks requiring
+      elevated privileges at system startup
+level: high

@@ -1,0 +1,81 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "subjectLogonId": "0x6e69d9",
+        "clientProcessId": "2740",
+        "subjectUserSid": "S-1-5-21-1936990016-347023981-4024709258-1001",
+        "taskContent": "&lt;?xml version=\\\"1.0\\\" encoding=\\\"UTF-16\\\"?&gt;  &lt;Task version=\\\"1.3\\\" xmlns=\\\"http://schemas.microsoft.com/windows/2004/02/mit/task\\\"&gt;    &lt;RegistrationInfo&gt;      &lt;URI&gt;\\\\t100008&lt;/URI&gt;    &lt;/RegistrationInfo&gt;    &lt;Triggers /&gt;    &lt;Settings&gt;      &lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt;      &lt;DisallowStartIfOnBatteries&gt;true&lt;/DisallowStartIfOnBatteries&gt;      &lt;StopIfGoingOnBatteries&gt;true&lt;/StopIfGoingOnBatteries&gt;      &lt;AllowHardTerminate&gt;true&lt;/AllowHardTerminate&gt;      &lt;StartWhenAvailable&gt;false&lt;/StartWhenAvailable&gt;      &lt;RunOnlyIfNetworkAvailable&gt;false&lt;/RunOnlyIfNetworkAvailable&gt;      &lt;IdleSettings&gt;        &lt;Duration&gt;PT10M&lt;/Duration&gt;        &lt;WaitTimeout&gt;PT1H&lt;/WaitTimeout&gt;        &lt;StopOnIdleEnd&gt;true&lt;/StopOnIdleEnd&gt;        &lt;RestartOnIdle&gt;false&lt;/RestartOnIdle&gt;      &lt;/IdleSettings&gt;      &lt;AllowStartOnDemand&gt;true&lt;/AllowStartOnDemand&gt;      &lt;Enabled&gt;true&lt;/Enabled&gt;      &lt;Hidden&gt;true&lt;/Hidden&gt;      &lt;RunOnlyIfIdle&gt;false&lt;/RunOnlyIfIdle&gt;      &lt;DisallowStartOnRemoteAppSession&gt;false&lt;/DisallowStartOnRemoteAppSession&gt;      &lt;UseUnifiedSchedulingEngine&gt;true&lt;/UseUnifiedSchedulingEngine&gt;      &lt;WakeToRun&gt;false&lt;/WakeToRun&gt;      &lt;ExecutionTimeLimit&gt;PT72H&lt;/ExecutionTimeLimit&gt;      &lt;Priority&gt;7&lt;/Priority&gt;    &lt;/Settings&gt;    &lt;Actions Context=\\\"Author\\\"&gt;      &lt;Exec&gt;        &lt;Command&gt;C:\\\\Windows\\\\System32\\\\notepad.exe&lt;/Command&gt;      &lt;/Exec&gt;    &lt;/Actions&gt;    &lt;Principals&gt;      &lt;Principal id=\\\"Author\\\"&gt;        &lt;UserId&gt;hostname\\\\username&lt;/UserId&gt;        &lt;LogonType&gt;InteractiveToken&lt;/LogonType&gt;        &lt;RunLevel&gt;LeastPrivilege&lt;/RunLevel&gt;      &lt;/Principal&gt;    &lt;/Principals&gt;  &lt;/Task&gt;",
+        "parentProcessId": "1152",
+        "rpcCallClientLocality": "0",
+        "subjectDomainName": "hostname",
+        "clientProcessStartKey": "9288674231451973",
+        "taskName": "\\\\t100008",
+        "fQDN": "hostname",
+        "subjectUserName": "username"
+      },
+      "system": {
+        "eventID": "4698",
+        "keywords": "0x8020000000000000",
+        "providerGuid": "{54849625-5478-4994-a5ba-3e3b0328c30d}",
+        "level": "0",
+        "channel": "Security",
+        "opcode": "0",
+        "message": "\"A scheduled task was created.\r\n\r\nSubject:\r\n\tSecurity ID:\t\tS-1-5-21-1936990016-347023981-4024709258-1001\r\n\tAccount Name:\t\tusername\r\n\tAccount Domain:\t\thostname\r\n\tLogon ID:\t\t0x6E69D9\r\n\r\nTask Information:\r\n\tTask Name: \t\t\\t100008\r\n\tTask Content: \t\t<?xml version=\"1.0\" encoding=\"UTF-16\"?>\r\n<Task version=\"1.3\" xmlns=\"http://schemas.microsoft.com/windows/2004/02/mit/task\">\r\n  <RegistrationInfo>\r\n    <URI>\\t100008</URI>\r\n  </RegistrationInfo>\r\n  <Triggers />\r\n  <Settings>\r\n    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>\r\n    <DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries>\r\n    <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>\r\n    <AllowHardTerminate>true</AllowHardTerminate>\r\n    <StartWhenAvailable>false</StartWhenAvailable>\r\n    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>\r\n    <IdleSettings>\r\n      <Duration>PT10M</Duration>\r\n      <WaitTimeout>PT1H</WaitTimeout>\r\n      <StopOnIdleEnd>true</StopOnIdleEnd>\r\n      <RestartOnIdle>false</RestartOnIdle>\r\n    </IdleSettings>\r\n    <AllowStartOnDemand>true</AllowStartOnDemand>\r\n    <Enabled>true</Enabled>\r\n    <Hidden>true</Hidden>\r\n    <RunOnlyIfIdle>false</RunOnlyIfIdle>\r\n    <DisallowStartOnRemoteAppSession>false</DisallowStartOnRemoteAppSession>\r\n    <UseUnifiedSchedulingEngine>true</UseUnifiedSchedulingEngine>\r\n    <WakeToRun>false</WakeToRun>\r\n    <ExecutionTimeLimit>PT72H</ExecutionTimeLimit>\r\n    <Priority>7</Priority>\r\n  </Settings>\r\n  <Actions Context=\"Author\">\r\n    <Exec>\r\n      <Command>C:\\Windows\\System32\\notepad.exe</Command>\r\n    </Exec>\r\n  </Actions>\r\n  <Principals>\r\n    <Principal id=\"Author\">\r\n      <UserId>hostname\\username</UserId>\r\n      <LogonType>InteractiveToken</LogonType>\r\n      <RunLevel>LeastPrivilege</RunLevel>\r\n    </Principal>\r\n  </Principals>\r\n</Task>\r\n\r\nOther Information:\r\n\tProcessCreationTime: \t\t9288674231451973\r\n\tClientProcessId: \t\t\t2740\r\n\tParentProcessId: \t\t\t1152\r\n\tFQDN: \t\t0\r\n\t\"",
+        "version": "1",
+        "systemTime": "2026-07-08T18:43:48.1484441Z",
+        "eventRecordID": "58928",
+        "threadID": "1100",
+        "computer": "hostname",
+        "task": "12804",
+        "processID": "892",
+        "severityValue": "AUDIT_SUCCESS",
+        "providerName": "Microsoft-Windows-Security-Auditing"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": true,
+    "level": 12,
+    "description": "Scheduled task created: \\\\t100008",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Scheduled Task"
+      ],
+      "id": [
+        "T1053.005"
+      ],
+      "tactic": [
+        "Execution",
+        "Persistence",
+        "Privilege Escalation"
+      ]
+    },
+    "id": "100005"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Security-Auditing\",\"providerGuid\":\"{54849625-5478-4994-a5ba-3e3b0328c30d}\",\"eventID\":\"4698\",\"version\":\"1\",\"level\":\"0\",\"task\":\"12804\",\"opcode\":\"0\",\"keywords\":\"0x8020000000000000\",\"systemTime\":\"2026-07-08T18:43:48.1484441Z\",\"eventRecordID\":\"58928\",\"processID\":\"892\",\"threadID\":\"1100\",\"channel\":\"Security\",\"computer\":\"hostname\",\"severityValue\":\"AUDIT_SUCCESS\",\"message\":\"\\\"A scheduled task was created.\\r\\n\\r\\nSubject:\\r\\n\\tSecurity ID:\\t\\tS-1-5-21-1936990016-347023981-4024709258-1001\\r\\n\\tAccount Name:\\t\\tusername\\r\\n\\tAccount Domain:\\t\\thostname\\r\\n\\tLogon ID:\\t\\t0x6E69D9\\r\\n\\r\\nTask Information:\\r\\n\\tTask Name: \\t\\t\\\\t100008\\r\\n\\tTask Content: \\t\\t<?xml version=\\\"1.0\\\" encoding=\\\"UTF-16\\\"?>\\r\\n<Task version=\\\"1.3\\\" xmlns=\\\"http://schemas.microsoft.com/windows/2004/02/mit/task\\\">\\r\\n  <RegistrationInfo>\\r\\n    <URI>\\\\t100008</URI>\\r\\n  </RegistrationInfo>\\r\\n  <Triggers />\\r\\n  <Settings>\\r\\n    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>\\r\\n    <DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries>\\r\\n    <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>\\r\\n    <AllowHardTerminate>true</AllowHardTerminate>\\r\\n    <StartWhenAvailable>false</StartWhenAvailable>\\r\\n    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>\\r\\n    <IdleSettings>\\r\\n      <Duration>PT10M</Duration>\\r\\n      <WaitTimeout>PT1H</WaitTimeout>\\r\\n      <StopOnIdleEnd>true</StopOnIdleEnd>\\r\\n      <RestartOnIdle>false</RestartOnIdle>\\r\\n    </IdleSettings>\\r\\n    <AllowStartOnDemand>true</AllowStartOnDemand>\\r\\n    <Enabled>true</Enabled>\\r\\n    <Hidden>true</Hidden>\\r\\n    <RunOnlyIfIdle>false</RunOnlyIfIdle>\\r\\n    <DisallowStartOnRemoteAppSession>false</DisallowStartOnRemoteAppSession>\\r\\n    <UseUnifiedSchedulingEngine>true</UseUnifiedSchedulingEngine>\\r\\n    <WakeToRun>false</WakeToRun>\\r\\n    <ExecutionTimeLimit>PT72H</ExecutionTimeLimit>\\r\\n    <Priority>7</Priority>\\r\\n  </Settings>\\r\\n  <Actions Context=\\\"Author\\\">\\r\\n    <Exec>\\r\\n      <Command>C:\\\\Windows\\\\System32\\\\notepad.exe</Command>\\r\\n    </Exec>\\r\\n  </Actions>\\r\\n  <Principals>\\r\\n    <Principal id=\\\"Author\\\">\\r\\n      <UserId>hostname\\\\username</UserId>\\r\\n      <LogonType>InteractiveToken</LogonType>\\r\\n      <RunLevel>LeastPrivilege</RunLevel>\\r\\n    </Principal>\\r\\n  </Principals>\\r\\n</Task>\\r\\n\\r\\nOther Information:\\r\\n\\tProcessCreationTime: \\t\\t9288674231451973\\r\\n\\tClientProcessId: \\t\\t\\t2740\\r\\n\\tParentProcessId: \\t\\t\\t1152\\r\\n\\tFQDN: \\t\\t0\\r\\n\\t\\\"\"},\"eventdata\":{\"subjectUserSid\":\"S-1-5-21-1936990016-347023981-4024709258-1001\",\"subjectUserName\":\"username\",\"subjectDomainName\":\"hostname\",\"subjectLogonId\":\"0x6e69d9\",\"taskName\":\"\\\\\\\\t100008\",\"taskContent\":\"&lt;?xml version=\\\\\\\"1.0\\\\\\\" encoding=\\\\\\\"UTF-16\\\\\\\"?&gt;  &lt;Task version=\\\\\\\"1.3\\\\\\\" xmlns=\\\\\\\"http://schemas.microsoft.com/windows/2004/02/mit/task\\\\\\\"&gt;    &lt;RegistrationInfo&gt;      &lt;URI&gt;\\\\\\\\t100008&lt;/URI&gt;    &lt;/RegistrationInfo&gt;    &lt;Triggers /&gt;    &lt;Settings&gt;      &lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt;      &lt;DisallowStartIfOnBatteries&gt;true&lt;/DisallowStartIfOnBatteries&gt;      &lt;StopIfGoingOnBatteries&gt;true&lt;/StopIfGoingOnBatteries&gt;      &lt;AllowHardTerminate&gt;true&lt;/AllowHardTerminate&gt;      &lt;StartWhenAvailable&gt;false&lt;/StartWhenAvailable&gt;      &lt;RunOnlyIfNetworkAvailable&gt;false&lt;/RunOnlyIfNetworkAvailable&gt;      &lt;IdleSettings&gt;        &lt;Duration&gt;PT10M&lt;/Duration&gt;        &lt;WaitTimeout&gt;PT1H&lt;/WaitTimeout&gt;        &lt;StopOnIdleEnd&gt;true&lt;/StopOnIdleEnd&gt;        &lt;RestartOnIdle&gt;false&lt;/RestartOnIdle&gt;      &lt;/IdleSettings&gt;      &lt;AllowStartOnDemand&gt;true&lt;/AllowStartOnDemand&gt;      &lt;Enabled&gt;true&lt;/Enabled&gt;      &lt;Hidden&gt;true&lt;/Hidden&gt;      &lt;RunOnlyIfIdle&gt;false&lt;/RunOnlyIfIdle&gt;      &lt;DisallowStartOnRemoteAppSession&gt;false&lt;/DisallowStartOnRemoteAppSession&gt;      &lt;UseUnifiedSchedulingEngine&gt;true&lt;/UseUnifiedSchedulingEngine&gt;      &lt;WakeToRun&gt;false&lt;/WakeToRun&gt;      &lt;ExecutionTimeLimit&gt;PT72H&lt;/ExecutionTimeLimit&gt;      &lt;Priority&gt;7&lt;/Priority&gt;    &lt;/Settings&gt;    &lt;Actions Context=\\\\\\\"Author\\\\\\\"&gt;      &lt;Exec&gt;        &lt;Command&gt;C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\notepad.exe&lt;/Command&gt;      &lt;/Exec&gt;    &lt;/Actions&gt;    &lt;Principals&gt;      &lt;Principal id=\\\\\\\"Author\\\\\\\"&gt;        &lt;UserId&gt;hostname\\\\\\\\username&lt;/UserId&gt;        &lt;LogonType&gt;InteractiveToken&lt;/LogonType&gt;        &lt;RunLevel&gt;LeastPrivilege&lt;/RunLevel&gt;      &lt;/Principal&gt;    &lt;/Principals&gt;  &lt;/Task&gt;\",\"clientProcessStartKey\":\"9288674231451973\",\"clientProcessId\":\"2740\",\"parentProcessId\":\"1152\",\"rpcCallClientLocality\":\"0\",\"fQDN\":\"hostname\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:43:49.234Z",
+  "location": "EventChannel",
+  "id": "1783536229.4616672",
+  "timestamp": "2026-07-08T18:43:49.234+0000"
+}

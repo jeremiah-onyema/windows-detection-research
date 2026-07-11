@@ -1,0 +1,34 @@
+title: Scheduled Task Created With Boot or Logon Persistence Trigger
+id: b8c9d0e1-f2a3-4567-bcde-678901234567
+status: experimental
+description: >
+    Detects scheduled tasks that run on system boot or user logon.
+    These triggers are common on their own, but paired with a
+    suspicious executable they are a strong sign of persistence.
+    A task that calls an executable directly, without a cmd.exe
+    wrapper, slips past content-based rules, so matching on the
+    trigger catches what those rules miss.
+references:
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+    definition: 'Requirements: Windows Event ID 4698'
+detection:
+    selection:
+        EventID: 4698
+    selection_trigger:
+        TaskContent|contains:
+            - 'BootTrigger'
+            - 'LogonTrigger'
+    condition: selection and selection_trigger
+falsepositives:
+    - Legitimate software using boot or logon
+      triggers for startup automation
+    - Antivirus and security tools
+level: medium

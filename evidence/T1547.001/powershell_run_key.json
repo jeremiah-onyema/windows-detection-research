@@ -1,0 +1,78 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "image": "C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+        "targetObject": "HKU\\\\S-1-5-21-1936990016-347023981-4024709258-1001\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\t100012",
+        "processGuid": "{f5cafcf2-9a62-6a4e-a502-000000002100}",
+        "processId": "2464",
+        "utcTime": "2026-07-08 18:43:48.418",
+        "ruleName": "technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder",
+        "details": "powershell.exe -nop -enc ZQBjAGgAbwA=",
+        "eventType": "SetValue",
+        "user": "hostname\\\\username"
+      },
+      "system": {
+        "eventID": "13",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"Registry value set:\r\nRuleName: technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder\r\nEventType: SetValue\r\nUtcTime: 2026-07-08 18:43:48.418\r\nProcessGuid: {f5cafcf2-9a62-6a4e-a502-000000002100}\r\nProcessId: 2464\r\nImage: C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nTargetObject: HKU\\S-1-5-21-1936990016-347023981-4024709258-1001\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\t100012\r\nDetails: powershell.exe -nop -enc ZQBjAGgAbwA=\r\nUser: hostname\\username\"",
+        "version": "2",
+        "systemTime": "2026-07-08T18:43:48.4205041Z",
+        "eventRecordID": "2803833",
+        "threadID": "4456",
+        "computer": "hostname",
+        "task": "13",
+        "processID": "3596",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": true,
+    "level": 15,
+    "description": "High Risk: Suspicious command written to Run key by C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe: HKU\\\\S-1-5-21-1936990016-347023981-4024709258-1001\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\t100012",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Registry Run Keys / Startup Folder"
+      ],
+      "id": [
+        "T1547.001"
+      ],
+      "tactic": [
+        "Persistence",
+        "Privilege Escalation"
+      ]
+    },
+    "id": "100012"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"13\",\"version\":\"2\",\"level\":\"4\",\"task\":\"13\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-07-08T18:43:48.4205041Z\",\"eventRecordID\":\"2803833\",\"processID\":\"3596\",\"threadID\":\"4456\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Registry value set:\\r\\nRuleName: technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder\\r\\nEventType: SetValue\\r\\nUtcTime: 2026-07-08 18:43:48.418\\r\\nProcessGuid: {f5cafcf2-9a62-6a4e-a502-000000002100}\\r\\nProcessId: 2464\\r\\nImage: C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\r\\nTargetObject: HKU\\\\S-1-5-21-1936990016-347023981-4024709258-1001\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\t100012\\r\\nDetails: powershell.exe -nop -enc ZQBjAGgAbwA=\\r\\nUser: hostname\\\\username\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder\",\"eventType\":\"SetValue\",\"utcTime\":\"2026-07-08 18:43:48.418\",\"processGuid\":\"{f5cafcf2-9a62-6a4e-a502-000000002100}\",\"processId\":\"2464\",\"image\":\"C:\\\\\\\\WINDOWS\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\",\"targetObject\":\"HKU\\\\\\\\S-1-5-21-1936990016-347023981-4024709258-1001\\\\\\\\Software\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\CurrentVersion\\\\\\\\Run\\\\\\\\t100012\",\"details\":\"powershell.exe -nop -enc ZQBjAGgAbwA=\",\"user\":\"hostname\\\\\\\\username\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:43:49.154Z",
+  "location": "EventChannel",
+  "id": "1783536229.4609703",
+  "timestamp": "2026-07-08T18:43:49.154+0000"
+}

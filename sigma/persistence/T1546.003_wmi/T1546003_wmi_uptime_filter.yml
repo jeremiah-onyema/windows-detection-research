@@ -1,0 +1,22 @@
+title: WMI Event Filter Using System Uptime Trigger
+id: T1546003-001
+status: experimental
+description: Detects a WMI event filter that watches system uptime. Attackers use an uptime query as the trigger so their persistence fires shortly after every boot.
+author: Jeremiah Onyena
+date: 2026-03-28
+mitre:
+  attack:
+    - T1546.003
+logsource:
+  product: windows
+  service: sysmon
+detection:
+  selection:
+    EventID: 19
+    Query|contains:
+      - 'SystemUpTime'
+      - 'Win32_PerfFormattedData_PerfOS_System'
+  condition: selection
+falsepositives:
+  - Custom performance monitoring solutions
+level: high

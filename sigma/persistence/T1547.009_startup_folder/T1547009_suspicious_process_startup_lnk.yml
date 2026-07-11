@@ -1,0 +1,43 @@
+title: Suspicious Process Created Shortcut in Startup Folder
+id: e1f2a3b4-c5d6-7890-efab-901234567890
+status: experimental
+description: >
+    Detects a scripting engine or command interpreter creating a
+    shortcut in a Windows Startup folder. Real installers do put
+    shortcuts there, but they do not use PowerShell, cmd or wscript
+    to do it. Attackers often use the PowerShell WScript.Shell COM
+    object to write a startup .lnk. Seen in lab when powershell.exe
+    created T1547.009.lnk in both startup locations at once.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1547/009/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.t1547.009
+    - attack.t1059.001
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection_path:
+        TargetFilename|contains:
+            - '\Microsoft\Windows\Start Menu\Programs\Startup\'
+    selection_extension:
+        TargetFilename|endswith:
+            - '.lnk'
+            - '.url'
+    selection_process:
+        Image|endswith:
+            - '\powershell.exe'
+            - '\cmd.exe'
+            - '\wscript.exe'
+            - '\cscript.exe'
+            - '\mshta.exe'
+            - '\rundll32.exe'
+    condition: selection_path and selection_extension and selection_process
+falsepositives:
+    - Unlikely - legitimate installers do not use
+      scripting engines to create startup shortcuts
+level: critical

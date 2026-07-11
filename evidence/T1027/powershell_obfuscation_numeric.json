@@ -1,0 +1,97 @@
+{
+  "agent": {
+    "ip": "10.0.0.100",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "originalFileName": "PowerShell.EXE",
+        "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+        "product": "Microsoft\u00ae Windows\u00ae Operating System",
+        "parentProcessGuid": "{f5cafcf2-9d17-6a4e-ec02-000000002100}",
+        "description": "Windows PowerShell",
+        "logonGuid": "{f5cafcf2-9d16-6a4e-8469-7b0000000000}",
+        "parentCommandLine": "\\\"C:\\\\WINDOWS\\\\system32\\\\cmd.exe\\\" /c powershell.exe -NoProfile -Command [char][convert]::ToInt16([string]110,8)",
+        "processGuid": "{f5cafcf2-9d17-6a4e-ee02-000000002100}",
+        "logonId": "0x7b6984",
+        "parentProcessId": "6912",
+        "processId": "4868",
+        "currentDirectory": "C:\\\\Users\\\\username\\\\",
+        "utcTime": "2026-07-08 18:55:19.368",
+        "hashes": "SHA1=EB42621654E02FAF2DE940442B6DEB1A77864E5B,MD5=A97E6573B97B44C96122BFA543A82EA1,SHA256=0FF6F2C94BC7E2833A5F7E16DE1622E5DBA70396F31C7D5F56381870317E8C46,IMPHASH=AFACF6DC9041114B198160AAB4D0AE77",
+        "parentImage": "C:\\\\Windows\\\\System32\\\\cmd.exe",
+        "ruleName": "technique_id=T1059.001,technique_name=PowerShell",
+        "company": "Microsoft Corporation",
+        "commandLine": "powershell.exe  -NoProfile -Command [char][convert]::ToInt16([string]110,8)",
+        "integrityLevel": "High",
+        "fileVersion": "10.0.26100.5074 (WinBuild.160101.0800)",
+        "user": "hostname\\\\username",
+        "terminalSessionId": "0",
+        "parentUser": "DESKTOP-xxxx\\\\yyyy"
+      },
+      "system": {
+        "eventID": "1",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"Process Create:\r\nRuleName: technique_id=T1059.001,technique_name=PowerShell\r\nUtcTime: 2026-07-08 18:55:19.368\r\nProcessGuid: {f5cafcf2-9d17-6a4e-ee02-000000002100}\r\nProcessId: 4868\r\nImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nFileVersion: 10.0.26100.5074 (WinBuild.160101.0800)\r\nDescription: Windows PowerShell\r\nProduct: Microsoft\u00ae Windows\u00ae Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: PowerShell.EXE\r\nCommandLine: powershell.exe  -NoProfile -Command [char][convert]::ToInt16([string]110,8) \r\nCurrentDirectory: C:\\Users\\username\\\r\nUser: hostname\\username\r\nLogonGuid: {f5cafcf2-9d16-6a4e-8469-7b0000000000}\r\nLogonId: 0x7B6984\r\nTerminalSessionId: 0\r\nIntegrityLevel: High\r\nHashes: SHA1=EB42621654E02FAF2DE940442B6DEB1A77864E5B,MD5=A97E6573B97B44C96122BFA543A82EA1,SHA256=0FF6F2C94BC7E2833A5F7E16DE1622E5DBA70396F31C7D5F56381870317E8C46,IMPHASH=AFACF6DC9041114B198160AAB4D0AE77\r\nParentProcessGuid: {f5cafcf2-9d17-6a4e-ec02-000000002100}\r\nParentProcessId: 6912\r\nParentImage: C:\\Windows\\System32\\cmd.exe\r\nParentCommandLine: \"C:\\WINDOWS\\system32\\cmd.exe\" /c powershell.exe -NoProfile -Command [char][convert]::ToInt16([string]110,8) \r\nParentUser: DESKTOP-xxxx\\yyyy\"",
+        "version": "5",
+        "systemTime": "2026-07-08T18:55:19.3813471Z",
+        "eventRecordID": "2804330",
+        "threadID": "4456",
+        "computer": "DESKTOP-xxxx",
+        "task": "1",
+        "processID": "3596",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": true,
+    "level": 12,
+    "description": "PowerShell numeric-to-character conversion pipeline detected - possible base-agnostic obfuscation (T1027)",
+    "groups": [
+      "windows",
+      "powershell",
+      "obfuscation",
+      "t1027",
+      "powershell_obfuscation",
+      "defense_evasion"
+    ],
+    "mitre": {
+      "technique": [
+        "Obfuscated Files or Information",
+        "PowerShell"
+      ],
+      "id": [
+        "T1027",
+        "T1059.001"
+      ],
+      "tactic": [
+        "Defense Evasion",
+        "Execution"
+      ]
+    },
+    "id": "100100"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"1\",\"version\":\"5\",\"level\":\"4\",\"task\":\"1\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-07-08T18:55:19.3813471Z\",\"eventRecordID\":\"2804330\",\"processID\":\"3596\",\"threadID\":\"4456\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Process Create:\\r\\nRuleName: technique_id=T1059.001,technique_name=PowerShell\\r\\nUtcTime: 2026-07-08 18:55:19.368\\r\\nProcessGuid: {f5cafcf2-9d17-6a4e-ee02-000000002100}\\r\\nProcessId: 4868\\r\\nImage: C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\r\\nFileVersion: 10.0.26100.5074 (WinBuild.160101.0800)\\r\\nDescription: Windows PowerShell\\r\\nProduct: Microsoft\u00ae Windows\u00ae Operating System\\r\\nCompany: Microsoft Corporation\\r\\nOriginalFileName: PowerShell.EXE\\r\\nCommandLine: powershell.exe  -NoProfile -Command [char][convert]::ToInt16([string]110,8) \\r\\nCurrentDirectory: C:\\\\Users\\\\username\\\\\\r\\nUser: hostname\\\\username\\r\\nLogonGuid: {f5cafcf2-9d16-6a4e-8469-7b0000000000}\\r\\nLogonId: 0x7B6984\\r\\nTerminalSessionId: 0\\r\\nIntegrityLevel: High\\r\\nHashes: SHA1=EB42621654E02FAF2DE940442B6DEB1A77864E5B,MD5=A97E6573B97B44C96122BFA543A82EA1,SHA256=0FF6F2C94BC7E2833A5F7E16DE1622E5DBA70396F31C7D5F56381870317E8C46,IMPHASH=AFACF6DC9041114B198160AAB4D0AE77\\r\\nParentProcessGuid: {f5cafcf2-9d17-6a4e-ec02-000000002100}\\r\\nParentProcessId: 6912\\r\\nParentImage: C:\\\\Windows\\\\System32\\\\cmd.exe\\r\\nParentCommandLine: \\\"C:\\\\WINDOWS\\\\system32\\\\cmd.exe\\\" /c powershell.exe -NoProfile -Command [char][convert]::ToInt16([string]110,8) \\r\\nParentUser: hostname\\\\username\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1059.001,technique_name=PowerShell\",\"utcTime\":\"2026-07-08 18:55:19.368\",\"processGuid\":\"{f5cafcf2-9d17-6a4e-ee02-000000002100}\",\"processId\":\"4868\",\"image\":\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\",\"fileVersion\":\"10.0.26100.5074 (WinBuild.160101.0800)\",\"description\":\"Windows PowerShell\",\"product\":\"Microsoft\u00ae Windows\u00ae Operating System\",\"company\":\"Microsoft Corporation\",\"originalFileName\":\"PowerShell.EXE\",\"commandLine\":\"powershell.exe  -NoProfile -Command [char][convert]::ToInt16([string]110,8)\",\"currentDirectory\":\"C:\\\\\\\\Users\\\\\\\\username\\\\\\\\\",\"user\":\"hostname\\\\\\\\username\",\"logonGuid\":\"{f5cafcf2-9d16-6a4e-8469-7b0000000000}\",\"logonId\":\"0x7b6984\",\"terminalSessionId\":\"0\",\"integrityLevel\":\"High\",\"hashes\":\"SHA1=EB42621654E02FAF2DE940442B6DEB1A77864E5B,MD5=A97E6573B97B44C96122BFA543A82EA1,SHA256=0FF6F2C94BC7E2833A5F7E16DE1622E5DBA70396F31C7D5F56381870317E8C46,IMPHASH=AFACF6DC9041114B198160AAB4D0AE77\",\"parentProcessGuid\":\"{f5cafcf2-9d17-6a4e-ec02-000000002100}\",\"parentProcessId\":\"6912\",\"parentImage\":\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\cmd.exe\",\"parentCommandLine\":\"\\\\\\\"C:\\\\\\\\WINDOWS\\\\\\\\system32\\\\\\\\cmd.exe\\\\\\\" /c powershell.exe -NoProfile -Command [char][convert]::ToInt16([string]110,8)\",\"parentUser\":\"hostname\\\\\\\\username\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:55:20.293Z",
+  "location": "EventChannel",
+  "id": "1783536920.5085119",
+  "timestamp": "2026-07-08T18:55:20.293+0000"
+}

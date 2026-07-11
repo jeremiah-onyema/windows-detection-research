@@ -1,0 +1,39 @@
+title: Windows Service Installed From Suspicious User-Writable Path
+id: e5f6a7b8-c9d0-1234-efab-345678901234
+status: experimental
+description: >
+    Detects a Windows service installed from a user-writable path
+    like Downloads, AppData, Temp or ProgramData. Real installers
+    put services under Program Files, so a service running from a
+    user folder is a common sign of malware sidestepping the admin
+    rights Program Files would need.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1543/003/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1543.003
+logsource:
+    product: windows
+    service: system
+    definition: 'Requirements: Windows Event ID 7045'
+detection:
+    selection:
+        EventID: 7045
+    filter_suspicious_path:
+        ImagePath|contains:
+            - '\Users\'
+            - '\Downloads\'
+            - '\AppData\'
+            - '\Temp\'
+            - '\ProgramData\'
+            - '\Public\'
+    condition: selection and filter_suspicious_path
+falsepositives:
+    - Some legitimate portable applications
+      installing services from user directories
+    - Development or Engineering tools during testing
+level: high

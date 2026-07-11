@@ -1,0 +1,148 @@
+title: PowerShell Numeric Array Character Assembly via Runtime Conversion
+id: 9f3e1a72-4c08-4b5d-b891-2d6c0f837e14
+status: experimental
+description: >
+    Detects a PowerShell obfuscation trick where a numeric array is
+    turned back into a string one character at a time, using
+    Convert::ToInt16 with a base and a [char] cast. Building the
+    string at runtime like this, instead of writing it out, is the
+    core of base-agnostic obfuscation.
+
+    It turned up in Atomic Red Team T1027 Test 7 and in the Red
+    Canary 2021 Threat Detection Report. The catch found in lab is
+    that when IEX itself is assembled at runtime from format strings
+    and reflection, Script Block Logging (4104) records the outer
+    obfuscated block but not the decoded payload. This rule keys on
+    the one part the attacker cannot drop without breaking the
+    trick, the numeric conversion pipeline.
+author: jeremiah-onyena
+date: 2026-04-15
+references:
+    - https://attack.mitre.org/techniques/T1027/
+    - https://redcanary.com/threat-detection-report/2021/
+    - https://github.com/jeremiah-onyena
+tags:
+    - attack.defense_evasion
+    - attack.t1027
+    - attack.t1059.001
+logsource:
+    product: windows
+    category: ps_script
+    definition: 'Requires Script Block Logging - Event ID 4104 from Microsoft-Windows-PowerShell/Operational'
+detection:
+    selection_conversion:
+        ScriptBlockText|contains:
+            - 'ToInt16'
+            - 'ToInt32'
+    selection_char:
+        ScriptBlockText|contains:
+            - '[CHAR]'
+            - '[char]'
+    selection_pipeline:
+        ScriptBlockText|contains:
+            - ".('%')"
+            - "| .('%')"
+            - 'ForEach-Object'
+    condition: selection_conversion and selection_char and selection_pipeline
+falsepositives:
+    - Custom encoding utilities that happen to use numeric-to-char conversion
+    - Security tooling with character manipulation routines
+level: high
+
+---
+
+title: PowerShell Dynamic Type Construction with Format String IEX Assembly
+id: 3b7d2f95-1e4a-4c89-a056-8f9e4b612c30
+status: experimental
+description: >
+    Detects PowerShell script blocks that build a type or function
+    name on the fly with the -f format operator and [TyPe]
+    reflection. This is how attackers hide Invoke-Expression itself,
+    so that Script Block Logging does not see it as a new
+    compilation.
+
+    When IEX is called by name, 4104 logs a second event with the
+    decoded payload. When IEX is assembled at runtime and called
+    through the & operator, 4104 only logs the outer obfuscated
+    block and the decoded content runs in memory with no log entry.
+    This rule catches the construction step before it gets that far.
+author: jeremiah-onyena
+date: 2026-04-15
+references:
+    - https://attack.mitre.org/techniques/T1027/
+    - https://github.com/danielbohannon/Invoke-Obfuscation
+    - https://github.com/jeremiah-onyena
+tags:
+    - attack.defense_evasion
+    - attack.t1027
+    - attack.t1059.001
+logsource:
+    product: windows
+    category: ps_script
+    definition: 'Requires Script Block Logging - Event ID 4104'
+detection:
+    selection_type_reflection:
+        ScriptBlockText|contains:
+            - '[TyPe]'
+            - '[TYpE]'
+            - '[tYpE]'
+    selection_format_assembly:
+        ScriptBlockText|contains:
+            - '-f '
+    selection_call_operator:
+        ScriptBlockText|contains:
+            - '&('
+    condition: selection_type_reflection and selection_format_assembly and selection_call_operator
+falsepositives:
+    - Legitimate admin scripts using type reflection for compatibility checks
+    - Some module loading patterns that dynamically resolve type names
+level: high
+
+---
+
+title: PowerShell Spawning Child PowerShell with Obfuscated Command Line
+id: 7c4a8e61-2d09-4f17-9345-1b5f7e293a08
+status: experimental
+description: >
+    Detects a PowerShell process spawning another PowerShell process
+    where the child command line shows format-string construction.
+    It works off process creation, not Script Block Logging, so it
+    still covers hosts where 4104 is off or where the decoded
+    payload never gets logged.
+
+    In lab against T1027 Test 7, Wazuh rule 92027 fired on this same
+    parent-child pattern, but it is generic and triggers on any
+    PowerShell spawning PowerShell. This one is tighter: it also
+    requires the child command line to show signs of runtime code
+    assembly, which cuts the noise while still catching this class
+    of obfuscation.
+author: jeremiah-onyena
+date: 2026-04-15
+references:
+    - https://attack.mitre.org/techniques/T1027/
+    - https://attack.mitre.org/techniques/T1059/001/
+    - https://github.com/jeremiah-onyena
+tags:
+    - attack.defense_evasion
+    - attack.t1027
+    - attack.t1059.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_parent:
+        ParentImage|endswith: '\powershell.exe'
+    selection_child:
+        Image|endswith: '\powershell.exe'
+    selection_cmdline_indicators:
+        CommandLine|contains:
+            - ' -f '
+            - 'ToInt16'
+            - 'ToInt32'
+            - '[TyPe]'
+            - '[TYpE]'
+    condition: selection_parent and selection_child and selection_cmdline_indicators
+falsepositives:
+    - Automated test frameworks including Atomic Red Team
+    - Legitimate PowerShell tooling that spawns child processes with format strings
+level: high

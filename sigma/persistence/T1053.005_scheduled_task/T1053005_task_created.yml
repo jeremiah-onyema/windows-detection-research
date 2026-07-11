@@ -1,0 +1,32 @@
+title: Scheduled Task Created
+id: a1b2c3d4-e5f6-7890-abcd-111111111111
+status: experimental
+description: >
+    Detects any scheduled task creation through Windows Security
+    event 4698. The default Wazuh rule for this, 60228, fires at
+    level 4, which is too low to surface in most SOC queues. Every
+    Atomic Red Team T1053.005 test produces this event, so this
+    rule raises it to a level worth looking at, whatever the task
+    actually does.
+references:
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.execution
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+    definition: 'Requirements: Windows Event ID 4698,
+                 Audit Other Object Access Events must be enabled'
+detection:
+    selection:
+        EventID: 4698
+    condition: selection
+falsepositives:
+    - Any legitimate scheduled task creation
+      by software installers or administrators
+level: medium

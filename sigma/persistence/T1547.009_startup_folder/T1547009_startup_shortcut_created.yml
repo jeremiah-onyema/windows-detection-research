@@ -1,0 +1,37 @@
+title: Shortcut File Created in Windows Startup Folder
+id: d0e1f2a3-b4c5-6789-defa-890123456789
+status: experimental
+description: >
+    Detects a .lnk or .url shortcut created in a Windows Startup
+    folder, covering both the per-user AppData location and the
+    all-users ProgramData one. Anything dropped here runs at logon.
+    The default Wazuh rule 92226 only watches the ProgramData path
+    and only when powershell.exe writes the file, so this rule
+    widens it to both locations and any process. It also fixes a
+    wrong MITRE tag: Olaf Hartong's sysmon-modular config labels
+    this T1187, but the right technique is T1547.009.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1547/009/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.t1547.009
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection_path:
+        TargetFilename|contains:
+            - '\Microsoft\Windows\Start Menu\Programs\Startup\'
+    selection_extension:
+        TargetFilename|endswith:
+            - '.lnk'
+            - '.url'
+    condition: selection_path and selection_extension
+falsepositives:
+    - Legitimate software placing shortcuts
+      in startup folder during installation
+    - IT deployment tools creating startup shortcuts
+level: high

@@ -1,0 +1,31 @@
+title: DNS C2 Tool Detected via Command Line Arguments
+id: d4e5f6a7-b8c9-0123-defa-234567890123
+status: experimental
+description: >
+    Detects DNS C2 tools such as dnscat2 by their command line
+    arguments, whatever the binary is called. Renaming the file
+    does not help the attacker, because it still has to pass
+    --dns server= to know where to call home.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1071/004/
+    - https://github.com/iagox86/dnscat2
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.command_and_control
+    - attack.t1071.004
+    - attack.t1095
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        CommandLine|contains|all:
+            - '--dns'
+            - 'server='
+    condition: selection
+falsepositives:
+    - Unlikely that this argument pattern is specific
+      to DNS C2 tooling
+level: critical

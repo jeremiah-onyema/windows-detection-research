@@ -1,0 +1,75 @@
+{
+  "agent": {
+    "ip": "10.0.0.100",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "serviceType": "user mode service",
+        "accountName": "LocalSystem",
+        "imagePath": "C:\\\\Users\\\\username\\\\Downloads\\\\test.exe",
+        "startType": "demand start",
+        "serviceName": "TestSvcAtomic"
+      },
+      "system": {
+        "eventID": "7045",
+        "eventSourceName": "Service Control Manager",
+        "keywords": "0x8080000000000000",
+        "providerGuid": "{555908d1-a6d7-4695-8e1e-26931d2012f4}",
+        "level": "4",
+        "channel": "System",
+        "opcode": "0",
+        "message": "\"A service was installed in the system.\r\n\r\nService Name:  TestSvcAtomic\r\nService File Name:  C:\\Users\\username\\Downloads\\test.exe\r\nService Type:  user mode service\r\nService Start Type:  demand start\r\nService Account:  LocalSystem\"",
+        "version": "0",
+        "systemTime": "2026-07-08T18:37:19.7869880Z",
+        "eventRecordID": "9063",
+        "threadID": "3888",
+        "computer": "Hostname",
+        "task": "0",
+        "processID": "876",
+        "severityValue": "INFORMATION",
+        "providerName": "Service Control Manager"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 1,
+    "mail": true,
+    "level": 15,
+    "description": "High Risk: Service installed from suspicious path: C:\\\\Users\\\\username\\\\Downloads\\\\test.exe",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Windows Service"
+      ],
+      "id": [
+        "T1543.003"
+      ],
+      "tactic": [
+        "Persistence",
+        "Privilege Escalation"
+      ]
+    },
+    "id": "100002"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Service Control Manager\",\"providerGuid\":\"{555908d1-a6d7-4695-8e1e-26931d2012f4}\",\"eventSourceName\":\"Service Control Manager\",\"eventID\":\"7045\",\"version\":\"0\",\"level\":\"4\",\"task\":\"0\",\"opcode\":\"0\",\"keywords\":\"0x8080000000000000\",\"systemTime\":\"2026-07-08T18:37:19.7869880Z\",\"eventRecordID\":\"9063\",\"processID\":\"876\",\"threadID\":\"3888\",\"channel\":\"System\",\"computer\":\"Hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"A service was installed in the system.\\r\\n\\r\\nService Name:  TestSvcAtomic\\r\\nService File Name:  C:\\\\Users\\\\username\\\\Downloads\\\\test.exe\\r\\nService Type:  user mode service\\r\\nService Start Type:  demand start\\r\\nService Account:  LocalSystem\\\"\"},\"eventdata\":{\"serviceName\":\"TestSvcAtomic\",\"imagePath\":\"C:\\\\\\\\Users\\\\\\\\username\\\\\\\\Downloads\\\\\\\\test.exe\",\"serviceType\":\"user mode service\",\"startType\":\"demand start\",\"accountName\":\"LocalSystem\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:37:20.898Z",
+  "location": "EventChannel",
+  "id": "1783535840.4129180",
+  "timestamp": "2026-07-08T18:37:20.898+0000"
+}

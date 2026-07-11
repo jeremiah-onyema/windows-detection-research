@@ -1,0 +1,25 @@
+title: WMI Filter-to-Consumer Binding Created
+id: T1546003-004
+status: experimental
+description: Detects creation of a WMI filter-to-consumer binding. This is the step that arms the persistence, because until the filter and consumer are bound together neither one does anything.
+author: Jeremiah Onyena
+date: 2026-03-28
+mitre:
+  attack:
+    - T1546.003
+logsource:
+  product: windows
+  service: sysmon
+detection:
+  selection:
+    EventID: 21
+    Operation: 'Created'
+  filter_legitimate:
+    Consumer|contains:
+      - 'BVTConsumer'
+      - 'SCM Event Log Consumer'
+      - 'Microsoft'
+  condition: selection and not filter_legitimate
+falsepositives:
+  - Third party management software using custom WMI consumers
+level: critical

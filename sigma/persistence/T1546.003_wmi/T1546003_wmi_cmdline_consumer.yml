@@ -1,0 +1,21 @@
+title: WMI CommandLine Consumer Registered
+id: T1546003-002
+status: experimental
+description: Detects creation of a WMI Commandline event consumer, which runs a command whenever its paired event filter fires. Attackers use it for fileless persistence.
+author: Jeremiah Onyena
+date: 2026-03-28
+mitre:
+  attack:
+    - T1546.003
+logsource:
+  product: windows
+  service: sysmon
+detection:
+  selection:
+    EventID: 20
+    Type: 'Command Line'
+    Operation: 'Created'
+  condition: selection
+falsepositives:
+  - Enterprise management tools registering custom WMI consumers
+level: high

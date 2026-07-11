@@ -1,0 +1,77 @@
+{
+  "agent": {
+    "ip": "x.x.x.x",
+    "name": "windows-detection-vm",
+    "id": "001"
+  },
+  "manager": {
+    "name": "wazuh-manager"
+  },
+  "data": {
+    "win": {
+      "eventdata": {
+        "utcTime": "2026-07-08 18:28:14.105",
+        "name": " \\\"AtomicRedTeam_consumer\\\"",
+        "destination": " \\\"cmd.exe\\\"",
+        "ruleName": "technique_id=T1047,technique_name=Windows Management Instrumentation",
+        "eventType": "WmiConsumerEvent",
+        "type": "Command Line",
+        "operation": "Created",
+        "user": "hostname\\\\username"
+      },
+      "system": {
+        "eventID": "20",
+        "keywords": "0x8000000000000000",
+        "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+        "level": "4",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "opcode": "0",
+        "message": "\"WmiEventConsumer activity detected:\r\nRuleName: technique_id=T1047,technique_name=Windows Management Instrumentation\r\nEventType: WmiConsumerEvent\r\nUtcTime: 2026-07-08 18:28:14.105\r\nOperation: Created\r\nUser: hostname\\username\r\nName:  \"AtomicRedTeam_consumer\"\r\nType: Command Line\r\nDestination:  \"cmd.exe\"\"",
+        "version": "3",
+        "systemTime": "2026-07-08T18:28:14.1068236Z",
+        "eventRecordID": "2802926",
+        "threadID": "6592",
+        "computer": "hostname",
+        "task": "20",
+        "processID": "3596",
+        "severityValue": "INFORMATION",
+        "providerName": "Microsoft-Windows-Sysmon"
+      }
+    }
+  },
+  "rule": {
+    "firedtimes": 2,
+    "mail": true,
+    "level": 13,
+    "description": "WMI CommandLine event consumer registered:  \\\"AtomicRedTeam_consumer\\\"",
+    "groups": [
+      "windows",
+      "persistence",
+      "sigma_coverage"
+    ],
+    "mitre": {
+      "technique": [
+        "Windows Management Instrumentation Event Subscription"
+      ],
+      "id": [
+        "T1546.003"
+      ],
+      "tactic": [
+        "Privilege Escalation",
+        "Persistence"
+      ]
+    },
+    "id": "100018"
+  },
+  "decoder": {
+    "name": "windows_eventchannel"
+  },
+  "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"20\",\"version\":\"3\",\"level\":\"4\",\"task\":\"20\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-07-08T18:28:14.1068236Z\",\"eventRecordID\":\"2802926\",\"processID\":\"3596\",\"threadID\":\"6592\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"hostname\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"WmiEventConsumer activity detected:\\r\\nRuleName: technique_id=T1047,technique_name=Windows Management Instrumentation\\r\\nEventType: WmiConsumerEvent\\r\\nUtcTime: 2026-07-08 18:28:14.105\\r\\nOperation: Created\\r\\nUser: hostname\\\\username\\r\\nName:  \\\"AtomicRedTeam_consumer\\\"\\r\\nType: Command Line\\r\\nDestination:  \\\"cmd.exe\\\"\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1047,technique_name=Windows Management Instrumentation\",\"eventType\":\"WmiConsumerEvent\",\"utcTime\":\"2026-07-08 18:28:14.105\",\"operation\":\"Created\",\"user\":\"hostname\\\\\\\\username\",\"name\":\" \\\\\\\"AtomicRedTeam_consumer\\\\\\\"\",\"type\":\"Command Line\",\"destination\":\" \\\\\\\"cmd.exe\\\\\\\"\"}}}",
+  "input": {
+    "type": "log"
+  },
+  "@timestamp": "2026-07-08T18:28:14.786Z",
+  "location": "EventChannel",
+  "id": "1783535294.3715362",
+  "timestamp": "2026-07-08T18:28:14.786+0000"
+}

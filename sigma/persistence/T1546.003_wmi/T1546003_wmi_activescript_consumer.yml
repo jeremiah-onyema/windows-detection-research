@@ -1,0 +1,21 @@
+title: WMI ActiveScript Consumer Registered - Fileless Persistence
+id: T1546003-003
+status: experimental
+description: Detects creation of a WMI ActiveScript event consumer, which runs VBScript or JScript straight from the WMI repository with nothing on disk. There is no normal reason to create one.
+author: Jeremiah Onyena
+date: 2026-03-28
+mitre:
+  attack:
+    - T1546.003
+logsource:
+  product: windows
+  service: sysmon
+detection:
+  selection:
+    EventID: 20
+    Type: 'Script'
+    Operation: 'Created'
+  condition: selection
+falsepositives:
+  - None expected
+level: critical

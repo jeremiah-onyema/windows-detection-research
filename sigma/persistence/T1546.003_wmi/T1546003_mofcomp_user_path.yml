@@ -1,0 +1,32 @@
+title: MOFComp.exe Loading MOF File from Non-System Path
+id: T1546003-005
+status: experimental
+description: Detects mofcomp.exe compiling a MOF file from a user-writable path such as Downloads, AppData or Temp. Attackers use this LOLBIN to install WMI persistence without PowerShell.
+author: Jeremiah Onyena
+date: 2026-03-28
+references:
+  - https://thedfirreport.com/2022/07/11/select-xmrig-from-sqlserver/
+mitre:
+  attack:
+    - T1546.003
+logsource:
+  product: windows
+  service: sysmon
+detection:
+  selection:
+    EventID: 1
+    Image|endswith: '\mofcomp.exe'
+  selection_path:
+    CommandLine|contains:
+      - '\Users\'
+      - '\Downloads\'
+      - '\AppData\'
+      - '\Temp\'
+      - '\Desktop\'
+      - '\Public\'
+  selection_mof:
+    CommandLine|contains: '.mof'
+  condition: selection and selection_path and selection_mof
+falsepositives:
+  - Software installers compiling MOF files from a user or temp path
+level: high

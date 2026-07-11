@@ -1,0 +1,36 @@
+title: Scheduled Task Executing From User-Writable Path
+id: c9d0e1f2-a3b4-5678-cdef-789012345678
+status: experimental
+description: >
+    Detects scheduled tasks that run an executable from a
+    user-writable path like Downloads, AppData or Temp. Real tasks
+    run their binaries from Program Files or System32, so one
+    pointing into a user folder usually means attacker-created
+    persistence.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.persistence
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+    definition: 'Requirements: Windows Event ID 4698'
+detection:
+    selection:
+        EventID: 4698
+    selection_path:
+        TaskContent|contains:
+            - '\Downloads\'
+            - '\AppData\'
+            - '\Temp\'
+            - '\Desktop\'
+            - '\Public\'
+    condition: selection and selection_path
+falsepositives:
+    - Development tools scheduling tasks
+      from user directories during testing
+level: high

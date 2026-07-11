@@ -1,0 +1,43 @@
+title: Scheduled Task Created With Suspicious Executable
+id: a7b8c9d0-e1f2-3456-abcd-567890123456
+status: experimental
+description: >
+    Detects scheduled tasks whose content points to commonly
+    abused executables like powershell, cmd, mshta or rundll32.
+    The default Wazuh rule 60228 fires at level 4 and never looks
+    at the task content, so this rule reads it directly.
+references:
+    - https://github.com/jeremiah-onyema/windows-detection-research
+    - https://attack.mitre.org/techniques/T1053/005/
+author: Jeremiah
+date: 2026/03/26
+tags:
+    - attack.execution
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+    definition: 'Requirements: Windows Event ID 4698,
+                 Audit Other Object Access Events must be enabled'
+detection:
+    selection:
+        EventID: 4698
+    selection_suspicious:
+        TaskContent|contains:
+            - 'powershell'
+            - 'cmd.exe'
+            - 'wscript'
+            - 'mshta'
+            - 'rundll32'
+            - 'regsvr32'
+            - 'cscript'
+            - 'certutil'
+            - 'bitsadmin'
+    condition: selection and selection_suspicious
+falsepositives:
+    - Legitimate administrative scheduled tasks
+      using PowerShell for automation
+    - Software deployment tasks
+level: high
