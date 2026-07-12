@@ -9,11 +9,11 @@ description: >
     core of base-agnostic obfuscation.
 
     It turned up in Atomic Red Team T1027 Test 7 and in the Red
-    Canary 2021 Threat Detection Report. The catch found in lab is
+    Canary 2021 Threat Detection Report. What I found in the lab is
     that when IEX itself is assembled at runtime from format strings
     and reflection, Script Block Logging (4104) records the outer
-    obfuscated block but not the decoded payload. This rule keys on
-    the one part the attacker cannot drop without breaking the
+    obfuscated block but not the decoded payload. So this rule keys
+    on the one part the attacker can't drop without breaking the
     trick, the numeric conversion pipeline.
 author: jeremiah-onyena
 date: 2026-04-15
@@ -58,7 +58,7 @@ description: >
     Detects PowerShell script blocks that build a type or function
     name on the fly with the -f format operator and [TyPe]
     reflection. This is how attackers hide Invoke-Expression itself,
-    so that Script Block Logging does not see it as a new
+    so that Script Block Logging doesn't see it as a new
     compilation.
 
     When IEX is called by name, 4104 logs a second event with the
@@ -111,11 +111,10 @@ description: >
     payload never gets logged.
 
     In lab against T1027 Test 7, Wazuh rule 92027 fired on this same
-    parent-child pattern, but it is generic and triggers on any
-    PowerShell spawning PowerShell. This one is tighter: it also
-    requires the child command line to show signs of runtime code
-    assembly, which cuts the noise while still catching this class
-    of obfuscation.
+    parent-child pattern, but it's generic and fires on any
+    PowerShell spawning PowerShell. This one is tighter. It also
+    wants the child command line to show signs of runtime code
+    assembly, which cuts the noise but still catches the same trick.
 author: jeremiah-onyena
 date: 2026-04-15
 references:

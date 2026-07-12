@@ -5,7 +5,7 @@ description: >
     Detects scheduled tasks that run with HighestAvailable
     privilege on a boot or logon trigger. That pairing hands an
     attacker elevated access back on every reboot or logon, which
-    makes it a strong persistence and privilege-escalation signal.
+    makes it a strong sign of both persistence and privilege escalation.
 references:
     - https://github.com/jeremiah-onyema/windows-detection-research
     - https://attack.mitre.org/techniques/T1053/005/

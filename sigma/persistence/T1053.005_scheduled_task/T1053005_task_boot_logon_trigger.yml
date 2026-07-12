@@ -3,8 +3,7 @@ id: b8c9d0e1-f2a3-4567-bcde-678901234567
 status: experimental
 description: >
     Detects scheduled tasks that run on system boot or user logon.
-    These triggers are common on their own, but paired with a
-    suspicious executable they are a strong sign of persistence.
+    These triggers are common on their own, but paired with a suspicious executable they are a strong sign of persistence.
     A task that calls an executable directly, without a cmd.exe
     wrapper, slips past content-based rules, so matching on the
     trigger catches what those rules miss.

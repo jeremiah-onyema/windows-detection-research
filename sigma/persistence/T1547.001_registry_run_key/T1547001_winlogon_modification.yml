@@ -4,10 +4,9 @@ status: experimental
 description: >
     Detects changes to the Winlogon Userinit or Shell registry
     values. These decide what runs at logon for every user on the
-    machine, so a change here is a strong persistence signal. The
-    write comes through as two events, a backup of the original
-    value followed by the malicious one, and that backup step is
-    itself a useful tell.
+    machine, so a change here almost always means persistence. It
+    shows up as two events, a backup of the original value and then
+    the malicious one, and that backup write is itself a tell.
 references:
     - https://github.com/jeremiah-onyema/windows-detection-research
     - https://attack.mitre.org/techniques/T1547/001/

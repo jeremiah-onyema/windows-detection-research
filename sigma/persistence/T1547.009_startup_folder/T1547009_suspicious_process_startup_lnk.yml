@@ -4,7 +4,7 @@ status: experimental
 description: >
     Detects a scripting engine or command interpreter creating a
     shortcut in a Windows Startup folder. Real installers do put
-    shortcuts there, but they do not use PowerShell, cmd or wscript
+    shortcuts there, but they don't use PowerShell, cmd or wscript
     to do it. Attackers often use the PowerShell WScript.Shell COM
     object to write a startup .lnk. Seen in lab when powershell.exe
     created T1547.009.lnk in both startup locations at once.

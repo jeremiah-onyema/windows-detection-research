@@ -3,7 +3,7 @@ id: b2c3d4e5-f6a7-8901-bcde-222222222222
 status: experimental
 description: >
     Detects scheduled tasks created with the Hidden property set
-    to true. A hidden task does not show up in the Task Scheduler
+    to true. A hidden task doesn't show up in the Task Scheduler
     GUI, so attackers use it to keep persistence out of sight from
     anyone checking by hand.
 references:

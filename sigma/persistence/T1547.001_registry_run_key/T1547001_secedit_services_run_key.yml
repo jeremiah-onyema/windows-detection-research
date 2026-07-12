@@ -3,13 +3,13 @@ id: f7a8b9c0-d1e2-3456-fabc-012345678901
 status: experimental
 description: >
     Detects services.exe writing an executable value to a Run key.
-    This is what shows up when secedit.exe sets Run key persistence
-    through a security template: secedit itself never appears as
-    the writer, the write is credited to services.exe running as
-    NT AUTHORITY\SYSTEM. Rules that look for reg.exe or
-    powershell.exe as the writer miss it. Found through Atomic Red
-    Team T1547.001 Test 16. It is tool-agnostic, any LOLBIN that
-    hands its registry write off to services.exe will match.
+    This is the write you see when secedit sets Run key persistence
+    from a security template. secedit never shows up as the writer.
+    The write comes through services.exe running as SYSTEM, so rules
+    that look for reg.exe or powershell.exe miss it. Seen in Atomic
+    Red Team T1547.001 Test 16. Anything else that hands its
+    registry write off the same way will match too, whatever the
+    tool is called.
 references:
     - https://attack.mitre.org/techniques/T1547/001/
     - https://attack.mitre.org/techniques/T1218/
